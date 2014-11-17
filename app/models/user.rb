@@ -19,4 +19,10 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+
+  protected
+
+  	def email_required?
+  		false
+  	end
 end
