@@ -7,11 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-
-<%= yield %>
+<div class="navbar navbar-default navbar-static-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<%= render "layouts/navbar" %>
+		</div>
+	</div>
+</div>
+<div class="container content">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<% if notice %>
+			  <div class="alert alert-info alert-dismissable">
+			  	<%= button_tag "x", :class => "close btn-sm", "data-dismiss" => "alert", :type => "button" %>
+			  	<strong><%= notice %></strong>
+			  </div>
+			<% end %>
+			<% if alert %>
+			  <p class="alert alert-danger alert-dismissable"><span class="glyphicon glyphicon-exclamation-sign"></span> <strong><%= alert %></strong></p>
+			<% end %>
+			<%= yield %>			
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

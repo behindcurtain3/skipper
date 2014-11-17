@@ -1,10 +1,8 @@
 Skipper::Application.routes.draw do
-  devise_for :users
+  # Users
+  devise_for :users, :controllers => {registrations: 'registrations'}, :path => '', :path_names => { :sign_in => "hello", :sign_out => "goodbye" }
 
-  devise_scope :user do
-    get "signin", to: "devise/sessions#new"
-    get "newb", to: "devise/registrations#new"
-  end
+  match 'remote_sign_up', to: 'remote_content#remote_sign_up', via: [:get]
 
   root "welcome#index"
 end
