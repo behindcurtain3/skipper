@@ -9,6 +9,11 @@ class User < ActiveRecord::Base
     	:case_sensitive => false
   	}
 
+  validates_length_of :username, :minimum => 3
+	validates_length_of :username, :maximum => 25
+
+	has_many :creations, foreign_key: "creator_id", class_name: "Crew"
+
   attr_accessor :login
 
   def self.find_for_database_authentication(warden_conditions)
@@ -19,6 +24,11 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+
+  # return username instead of id
+	def to_param
+		username
+	end
 
   protected
 

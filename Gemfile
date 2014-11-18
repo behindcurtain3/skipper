@@ -46,3 +46,4 @@ gem 'unicorn'
 
 gem 'devise'
 gem 'simple_form'
+gem 'nokogiri'

@@ -1,0 +1,29 @@
+<%= form_for(@crew) do |f| %>
+  <% if @crew.errors.any? %>
+      <div class="alert alert-danger">Oops, there was something wrong with the data submitted. Check below for errors.</div>
+  <% end %>
+
+  <% if f.object.new_record? %>
+
+  <div class="form-group"><%= f.label :name %> <span class="pull-right">No spaces, letters only</span><br>
+  <%= f.text_field :name, :autofocus => true, :class => "form-control", :placeholder => "Name" %></div>
+
+  <% end %>
+
+  <div class="form-group"><%= f.label :title %> <span class="pull-right">140 characters max</span><br>
+  <%= f.text_field :title, :class => "form-control", :placeholder => "Title" %></div>
+
+
+  <div class="form-group"><%= f.label :description %> <span class="pull-right">512 characters max</span><br>
+  <%= f.text_area :description, :class => "form-control", :placeholder => "Description" %>
+  </div>
+
+  
+  <div class="actions">
+  <% if f.object.new_record? %>
+    <%= f.submit "Create Crew", :class => "btn btn-success" %>
+  <% else %>
+    <%= f.submit "Save", :class => "btn btn-success" %>
+  <% end %>
+  </div>
+<% end %>
