@@ -29,4 +29,8 @@ module ApplicationHelper
 				"alert-info"
 		end
 	end
+
+	def merge_params(p={})
+  	params.merge(p).delete_if{|k,v| v.blank?}
+	end
 end

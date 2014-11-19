@@ -1,0 +1,11 @@
+<li class="post">
+	<% if post.url.present? %>
+		<%= link_to post.title, post.url %>
+	<% else %>
+		<%= link_to post.title, sub_post_path(post.sub, post) %>
+	<% end %>
+	<br>
+	submitted <%= time_ago_in_words post.created_at %> ago by <%= link_to post.user.username, user_path(post.user) %>
+	<br>
+	<%= link_to "comments", sub_post_path(post.sub, post) %>
+</li>

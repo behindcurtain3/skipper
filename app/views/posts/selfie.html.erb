@@ -4,10 +4,10 @@
   	<p></p>
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Create a Crew</h3>
+        <h3 class="panel-title">Create a Self Post on <%= link_to @sub.name, sub_path(@sub) %></h3>
       </div>
       <div class="panel-body">
-        <%= render 'form' %>
+        <%= render 'selfie_form' %>
       </div>
     </div>
 	</div>

@@ -11,9 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118044800) do
+ActiveRecord::Schema.define(version: 20141119042240) do
 
-  create_table "crews", force: true do |t|
+  create_table "posts", force: true do |t|
+    t.string   "token",      null: false
+    t.string   "title",      null: false
+    t.string   "url"
+    t.string   "text"
+    t.integer  "user_id",    null: false
+    t.integer  "sub_id",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posts", ["sub_id"], name: "index_posts_on_sub_id"
+  add_index "posts", ["token"], name: "index_posts_on_token", unique: true
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "subs", force: true do |t|
+    t.string   "token",                    null: false
     t.string   "name",        default: "", null: false
     t.string   "title",       default: "", null: false
     t.string   "description"
@@ -22,7 +38,19 @@ ActiveRecord::Schema.define(version: 20141118044800) do
     t.datetime "updated_at"
   end
 
-  add_index "crews", ["creator_id"], name: "index_crews_on_creator_id"
+  add_index "subs", ["creator_id"], name: "index_subs_on_creator_id"
+  add_index "subs", ["token"], name: "index_subs_on_token", unique: true
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "subscriber_id"
+    t.integer  "sub_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "subscriptions", ["sub_id"], name: "index_subscriptions_on_sub_id"
+  add_index "subscriptions", ["subscriber_id", "sub_id"], name: "index_subscriptions_on_subscriber_id_and_sub_id", unique: true
+  add_index "subscriptions", ["subscriber_id"], name: "index_subscriptions_on_subscriber_id"
 
   create_table "users", force: true do |t|
     t.string   "username",               default: "", null: false
@@ -40,7 +68,7 @@ ActiveRecord::Schema.define(version: 20141118044800) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 

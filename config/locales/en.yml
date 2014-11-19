@@ -20,4 +20,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail address"
+      sub:
+        token: "Name"
+        name: "Name"
+        title: "Title"
+        description: "Description"
+    errors:
+      models:
+        sub:
+          attributes:
+            token:
+              taken: "is already in use"
+            name:
+              taken: "is already in use"
+              invalid: "must contain only letters"

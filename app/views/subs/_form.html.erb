@@ -1,6 +1,11 @@
-<%= form_for(@crew) do |f| %>
-  <% if @crew.errors.any? %>
-      <div class="alert alert-danger">Oops, there was something wrong with the data submitted. Check below for errors.</div>
+<%= form_for(@sub) do |f| %>
+  <% if @sub.errors.any? %>
+      <div class="alert alert-danger">Oops, there was something wrong with the data submitted.
+
+      <% @sub.errors.full_messages_for(:token).each do |e| %>
+        <p class="alert"><%= e %></p>
+      <% end %>
+      </div>
   <% end %>
 
   <% if f.object.new_record? %>
@@ -21,7 +26,7 @@
   
   <div class="actions">
   <% if f.object.new_record? %>
-    <%= f.submit "Create Crew", :class => "btn btn-success" %>
+    <%= f.submit "Create Sub", :class => "btn btn-success" %>
   <% else %>
     <%= f.submit "Save", :class => "btn btn-success" %>
   <% end %>

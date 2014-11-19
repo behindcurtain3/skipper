@@ -1,0 +1,23 @@
+<%= form_for @post, :url => url_for(:controller => 'posts', :action => 'create_selfie') do |f| %>
+  <% if @post.errors.any? %>
+      <div class="alert alert-danger">Oops, there was something wrong with the data submitted.</div>
+  <% end %>
+
+  <% if f.object.new_record? %>
+
+  <div class="form-group"><%= f.label :title %> <span class="pull-right">140 characters</span><br>
+  <%= f.text_field :title, :autofocus => true, :class => "form-control", :placeholder => "Title" %></div>
+
+  <% end %>
+
+  <div class="form-group"><%= f.label :text %><br>
+  <%= f.text_area :text, :class => "form-control", :placeholder => "Self text", :rows => "8" %></div>
+
+  <div class="actions">
+  <% if f.object.new_record? %>
+    <%= f.submit "Create Post", :class => "btn btn-success" %>
+  <% else %>
+    <%= f.submit "Save", :class => "btn btn-success" %>
+  <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<h1>Listing crews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subs.each do |sub| %>
+      <tr>
+        <td><%= link_to 'Show', sub %></td>
+        <td><%= link_to 'Edit', edit_sub_path(sub) %></td>
+        <td><%= link_to 'Destroy', sub, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sub', new_sub_path %>

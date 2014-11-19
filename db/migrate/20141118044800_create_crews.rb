@@ -1,6 +1,7 @@
 class CreateCrews < ActiveRecord::Migration
   def change
-    create_table :crews do |t|
+    create_table :subs do |t|
+    	t.string :token, :null => false
     	t.string :name, :null => false, :default => ""
     	t.string :title, :null => false, :default => ""
     	t.string :description
@@ -10,6 +11,7 @@ class CreateCrews < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :crews, :creator_id
+    add_index :subs, :token, :unique => true
+    add_index :subs, :creator_id
   end
 end

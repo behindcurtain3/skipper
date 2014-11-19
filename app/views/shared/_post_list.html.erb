@@ -1,0 +1,7 @@
+<div class="post-list">
+	<ol>
+	<% @posts.each do |post| %>
+		<%= render 'shared/post', :post => post %><br>
+	<% end %>
+	</ol>
+</div>

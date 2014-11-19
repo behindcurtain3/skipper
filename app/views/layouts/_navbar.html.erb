@@ -10,8 +10,8 @@
 				<%= link_to root_path do %><strong>Discover</strong><% end %>
 			</li>
 			<% if user_signed_in? %>
-			<li class="<%= 'active' if current_page?(new_crew_path) %>">
-			<%= link_to 'Create Crew', new_crew_path %>
+			<li class="<%= 'active' if current_page?(new_sub_path) %>">
+			<%= link_to 'Create Sub', new_sub_path %>
 			</li>
 			<% end %>
 		</ul>
