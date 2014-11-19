@@ -14,6 +14,7 @@
 #
 
 class Post < ActiveRecord::Base
+	resourcify
 	before_create :randomize_token
 
 	validates_presence_of :title

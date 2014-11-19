@@ -13,13 +13,11 @@
 #
 
 class Sub < ActiveRecord::Base
-	before_validation :create_token
+	resourcify
 	belongs_to :creator, :class_name => "User", touch: true
 
-	validates :token, presence: true
-	validates :token, uniqueness: true if -> {self.token.present?}
 	validates :name, presence: true
-	validates :name, uniqueness: true if -> {self.name.present?}
+	validates :name, :uniqueness => {	:case_sensitive => false }
 	validates :name, format: { with: /[a-zA-Z]/ }
 	validates :title, presence: true
 	validates_length_of :name, :minimum => 3
@@ -34,10 +32,4 @@ class Sub < ActiveRecord::Base
 	def to_param
 		name
 	end
-
-	protected
-
-		def create_token
-			self.token = self.name.downcase
-		end
 end

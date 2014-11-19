@@ -12,3 +12,8 @@
  *= require bootstrap.min
  *= require_tree .
  */
+
+.clear-bottom {
+	margin-bottom: 0px !important;
+}
+

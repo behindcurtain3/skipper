@@ -1,34 +1,47 @@
-<%= form_for(@sub) do |f| %>
-  <% if @sub.errors.any? %>
-      <div class="alert alert-danger">Oops, there was something wrong with the data submitted.
-
-      <% @sub.errors.full_messages_for(:token).each do |e| %>
-        <p class="alert"><%= e %></p>
-      <% end %>
-      </div>
-  <% end %>
-
-  <% if f.object.new_record? %>
-
-  <div class="form-group"><%= f.label :name %> <span class="pull-right">No spaces, letters only</span><br>
-  <%= f.text_field :name, :autofocus => true, :class => "form-control", :placeholder => "Name" %></div>
-
-  <% end %>
-
-  <div class="form-group"><%= f.label :title %> <span class="pull-right">140 characters max</span><br>
-  <%= f.text_field :title, :class => "form-control", :placeholder => "Title" %></div>
-
-
-  <div class="form-group"><%= f.label :description %> <span class="pull-right">512 characters max</span><br>
-  <%= f.text_area :description, :class => "form-control", :placeholder => "Description" %>
-  </div>
-
+<div class="well">
+<%= form_for(@sub, :html => {:class => "form-horizontal"}) do |f| %>
+<fieldset>
+  <legend><% if f.object.new_record? %>Create a Sub<% else %>Edit Sub<% end %></legend>
   
-  <div class="actions">
   <% if f.object.new_record? %>
-    <%= f.submit "Create Sub", :class => "btn btn-success" %>
-  <% else %>
-    <%= f.submit "Save", :class => "btn btn-success" %>
-  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :autofocus => true, :class => "form-control", :placeholder => "Name" %>
+      <span class="help-block">No spaces, letters only</span>
+    </div>
   </div>
+
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, :class => "form-control", :placeholder => "Title" %>
+      <span class="help-block">140 characters max</span><br>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :description, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_area :description, :class => "form-control", :placeholder => "Description" %>
+      <span class="help-block">512 characters max</span><br>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-2">
+      <% if f.object.new_record? %>
+        <%= f.submit "Create Sub", :class => "btn btn-success" %>
+      <% else %>
+        <%= link_to 'Cancel', sub_path(@sub), :class => "btn btn-default" %>
+        <%= f.submit "Save", :class => "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</fieldset>
 <% end %>
+</div>

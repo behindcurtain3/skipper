@@ -17,6 +17,13 @@
 <div class="container content">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
+			<h3><%= yield :title %></h3>
+		</div>
+	</div>
+</div>
+<div class="container content">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
 			<% if notice %>
 			  <div class="alert alert-info alert-dismissable">
 			  	<%= button_tag "x", :class => "close btn-sm", "data-dismiss" => "alert", :type => "button" %>

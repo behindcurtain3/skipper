@@ -36,6 +36,8 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
+gem 'cancancan'
+gem 'rolify'
 gem 'simple_form'
 gem 'nokogiri'
 

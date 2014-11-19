@@ -28,6 +28,7 @@ class SubsController < ApplicationController
   def create
     @sub = current_user.creations.create(sub_params)
     @sub.creator = current_user
+    @sub.creator.subscribe(@sub)
 
     respond_to do |format|
       if @sub.save

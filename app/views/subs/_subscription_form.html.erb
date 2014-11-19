@@ -1,9 +1,9 @@
 <% if current_user.present? %>
   <div id="subscription_form">
   <% if current_user.subscribed?(@sub) %>
-    <%= render 'unsubscribe' %>
+    <%= render 'subs/unsubscribe' %>
   <% else %>
-    <%= render 'subscribe' %>
+    <%= render 'subs/subscribe' %>
   <% end %>
   </div>
 <% end %>

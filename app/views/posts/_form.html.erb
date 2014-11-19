@@ -1,4 +1,7 @@
+<div class="well">
 <%= form_for @post, :url => url_for(:controller => 'posts', :action => 'create_url') do |f| %>
+<fieldset>
+  <legend><% if f.object.new_record? %>Submit a<% else %>Edit<% end%> link on <%= link_to @sub.name, sub_path(@sub) %></legend>
   <% if @post.errors.any? %>
       <div class="alert alert-danger">Oops, there was something wrong with the data submitted.</div>
   <% end %>
@@ -15,9 +18,11 @@
 
   <div class="actions">
   <% if f.object.new_record? %>
-    <%= f.submit "Create Post", :class => "btn btn-success" %>
+    <%= f.submit "Submit Url", :class => "btn btn-success" %>
   <% else %>
     <%= f.submit "Save", :class => "btn btn-success" %>
   <% end %>
   </div>
+</fieldset>
 <% end %>
+</div>

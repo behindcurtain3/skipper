@@ -1,14 +1,11 @@
+<% provide(:title, @sub.name) %>
 <div class="row clearfix">
-  <div class="col-md-3 column"></div>
   <div class="col-md-6 column">
-  	<p></p>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Create a Post on <%= link_to @sub.name, sub_path(@sub) %></h3>
-      </div>
-      <div class="panel-body">
-        <%= render 'form' %>
-      </div>
-    </div>
-	</div>
+    <%= render 'form' %>
+  </div>
+  <div class="col-md-3 column">
+  </div>
+  <div class="col-md-3 column">
+    <%= render 'shared/sidebar' %>
+  </div>
 </div>

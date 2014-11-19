@@ -1,13 +1,9 @@
-<div class="row clearfix">
-	<div class="col-md-12 column">
-		<h4><%= link_to @sub.name, sub_path(@sub) %></h4>
-	</div>
-</div>
+<% provide(:title, @sub.name) %>
 <div class="row clearfix">
   <div class="col-md-9 column">
   	<%= render 'shared/post_list' %>
   </div>
   <div class="col-md-3 column">
-    <%= render 'sidebar' %>
+    <%= render 'shared/sidebar' %>
 	</div>
 </div>

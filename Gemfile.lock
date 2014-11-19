@@ -42,6 +42,7 @@ GEM
     arel (6.0.0.beta2)
     bcrypt (3.1.9)
     builder (3.2.2)
+    cancancan (1.9.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -114,6 +115,7 @@ GEM
       json (~> 1.4)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
+    rolify (3.4.1)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -152,11 +154,13 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  cancancan
   devise
   jbuilder (~> 1.2)
   jquery-rails
   nokogiri
   rails (= 4.2.0.beta4)
+  rolify
   sdoc
   simple_form
   sqlite3
