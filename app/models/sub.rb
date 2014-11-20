@@ -3,7 +3,6 @@
 # Table name: subs
 #
 #  id          :integer          not null, primary key
-#  token       :string           not null
 #  name        :string           default(""), not null
 #  title       :string           default(""), not null
 #  description :string
@@ -18,7 +17,7 @@ class Sub < ActiveRecord::Base
 
 	validates :name, presence: true
 	validates :name, :uniqueness => {	:case_sensitive => false }
-	validates :name, format: { with: /[a-zA-Z]/ }
+	validates :name, format: { with: /\A[a-zA-Z]+\z/i }
 	validates :title, presence: true
 	validates_length_of :name, :minimum => 3
 	validates_length_of :name, :maximum => 42

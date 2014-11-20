@@ -1,5 +1,5 @@
 <%= form_for(current_user.active_subscriptions.find_by(sub_id: @sub.id),
              html: { method: :delete },
              remote: true) do |f| %>
-  <%= f.submit "Unsubscribe", class: "btn btn-sm btn-primary" %>
+  <%= f.submit t(:sub_unsubscribe), class: "btn btn-sm btn-primary" %>
 <% end %>

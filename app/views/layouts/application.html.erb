@@ -7,21 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="navbar navbar-default navbar-static-top">
-	<div class="navbar-inner">
-		<div class="container">
+<div class="navbar navbar-default navbar-static-top clear-bottom">
+	<div class="container-fluid">
 			<%= render "layouts/navbar" %>
-		</div>
 	</div>
 </div>
-<div class="container content">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<h3><%= yield :title %></h3>
-		</div>
+<div class="navbar navbar-inverse navbar-no-curves">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-secondary"> 
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button> 
+		<strong><%= link_to t(:brand), root_path, :class => "navbar-brand" %></strong>
+	</div>
+	<div class="navbar-collapse collapse navbar-inverse-collapse" id="navbar-secondary">
+    <ul class="nav navbar-nav">
+      <li class="active"><%= yield :title %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+			<% if user_signed_in? %>
+				<li><%= link_to current_user.username, user_path(current_user) %></li>
+				<li><%= link_to t(:logout), destroy_user_session_path, method: :delete %></li>
+			<% else %>
+				<li><%= link_to t(:register), remote_sign_up_path, :remote => true %></li>
+				<li><%= link_to t(:login), new_user_session_path %></li>
+			<% end %>
+		</ul>
 	</div>
 </div>
-<div class="container content">
+<div class="container-fluid content">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<% if notice %>

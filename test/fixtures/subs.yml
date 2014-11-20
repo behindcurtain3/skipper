@@ -3,7 +3,6 @@
 # Table name: subs
 #
 #  id          :integer          not null, primary key
-#  token       :string           not null
 #  name        :string           default(""), not null
 #  title       :string           default(""), not null
 #  description :string

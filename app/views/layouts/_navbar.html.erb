@@ -1,28 +1,41 @@
 <nav role="navigation">
 	<div class="navbar-header">
-		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> 
-		 <%= link_to "Skipper", root_path, :class => "navbar-brand" %>
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1"> 
+		 	<span class="sr-only">Toggle navigation</span>
+		 	<span class="icon-bar"></span>
+		 	<span class="icon-bar"></span>
+		 	<span class="icon-bar"></span>
+	 	</button> 
 	</div>
 	
 	<div class="collapse navbar-collapse" id="navbar-collapse-1">
-		<ul class="nav navbar-nav">
+		<ul class="nav nav-sm navbar-nav">
+			<% if user_signed_in? %>
+      <li class="dropdown" id="community-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= t :sub_list %> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+        	<% current_user.subscriptions.each do |subscription| %>
+        	<li><%= link_to subscription.name, sub_path(subscription) %></li>
+        	<% end %>
+        </ul>
+      </li>
+     	<% end %>
+     	<li class="<%= 'active' if current_page?(root_path) %>">
+				<%= link_to root_path do %><strong><%= t :nav_home %></strong><% end %>
+			</li>
+			<li>-</li>
 			<li class="<%= 'active' if current_page?(root_path) %>">
-				<%= link_to root_path do %><strong>Discover</strong><% end %>
+				<%= link_to root_path do %><%= t :nav_all %><% end %>
+			</li>
+			<li>-</li>
+			<li class="<%= 'active' if current_page?(root_path) %>">
+				<%= link_to root_path do %><%= t :nav_random %><% end %>
 			</li>
 			<% if user_signed_in? %>
 			<li class="<%= 'active' if current_page?(new_sub_path) %>">
 			<%= link_to 'Create Sub', new_sub_path %>
 			</li>
 			<% end %>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<% if user_signed_in? %>
-				<li><%= link_to current_user.username, user_path(current_user) %></li>
-				<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-			<% else %>
-				<li><%= link_to "Sign up", remote_sign_up_path, :remote => true %></li>
-				<li><%= link_to "Login", new_user_session_path %></li>
-			<% end %>
-		</ul>
+    </ul>
 	</div>	
 </nav>

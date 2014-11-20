@@ -2,15 +2,22 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  token      :string           not null
-#  title      :string           not null
-#  url        :string
-#  text       :string
-#  user_id    :integer          not null
-#  sub_id     :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                      :integer          not null, primary key
+#  token                   :string           not null
+#  title                   :string           not null
+#  url                     :string
+#  text                    :string
+#  user_id                 :integer          not null
+#  sub_id                  :integer          not null
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  cached_votes_total      :integer          default("0")
+#  cached_votes_score      :integer          default("0")
+#  cached_votes_up         :integer          default("0")
+#  cached_votes_down       :integer          default("0")
+#  cached_weighted_score   :integer          default("0")
+#  cached_weighted_total   :integer          default("0")
+#  cached_weighted_average :float            default("0.0")
 #
 
 require 'test_helper'
@@ -61,7 +68,11 @@ class PostTest < ActiveSupport::TestCase
   test "title length should not be too long" do
   	@post.title = "12345678901234567890123456789012345678901234567890
   								12345678901234567890123456789012345678901234567890
-  								12345678901234567890123456789012345678901234567890"
+  								12345678901234567890123456789012345678901234567890
+                  12345678901234567890123456789012345678901234567890
+                  12345678901234567890123456789012345678901234567890
+                  12345678901234567890123456789012345678901234567890
+                  12345678901234567890123456789012345678901234567890"
 
   	assert_not @post.valid?
   end

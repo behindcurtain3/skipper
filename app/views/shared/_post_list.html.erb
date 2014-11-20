@@ -1,7 +1,8 @@
 <div class="post-list">
-	<ol>
+	<% rank = 1 %>
 	<% @posts.each do |post| %>
-		<%= render 'shared/post', :post => post %><br>
+		<%= render 'shared/post', :post => post, :rank => rank %>
+		<div class="clearfix"></div>
+		<% rank += 1 %>
 	<% end %>
-	</ol>
 </div>

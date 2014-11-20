@@ -13,7 +13,122 @@
  *= require_tree .
  */
 
+body { 
+   overflow-x: hidden;
+}
+
+ .post-content>a, 
+ .post-content>h4>a,
+ .post-content>p>a {
+ 	color: #551a8b;
+ }
+
+ .post-content>h4 {
+ }
+
+ .post-content>h6 {
+ 	margin-top: 1px;
+ }
+
 .clear-bottom {
 	margin-bottom: 0px !important;
 }
 
+.clear-horizontal-padding {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+.dropdown-menu{
+    position:fixed;
+}
+
+.navbar-no-curves {
+	border-radius: 0 !important;
+}
+
+.navbar-default {
+	background-color: #e4e4e4 !important;
+	border-color: #e4e4e4 !important;
+}
+
+.navbar-inverse {
+	background-color: #029acf !important;
+	border-color: #029acf !important;
+	opacity: 0.7;
+}
+
+.navbar-static-top {
+	min-height: 25px !important;
+}
+
+.navbar-collapse.collapse {
+	height: 25px !important;
+}
+
+.nav-sm>li>a {
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	padding-left: 7px !important;
+	padding-right: 7px !important;
+}
+
+.container-fluid {
+	padding-left: 2px !important;
+	padding-right: 5px !important;
+}
+
+.stats {
+	margin-bottom: 10px;
+}
+
+.description {
+	margin-bottom: 10px;
+}
+.post {
+    display: block;
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.post>ul {
+	min-height: 60px;
+}
+
+.post>ul>li {
+	min-height: 60px;
+}
+
+.rank {
+	float: left;
+	margin-top: 18px;
+}
+
+.score-col {
+	float: left;
+	margin-left: 5px;
+}
+
+.post-content {
+	margin-left: 70px;
+}
+
+.score-col {
+	margin-left: 10px;
+	width:40px;
+}
+
+.uparrow,
+.downarrow,
+.score {
+	text-align: center;
+}
+
+.uparrow>a,
+.downarrow>a {
+	color: #b3b3b3;
+}
+
+.voted>a {
+	color: #d9230f !important;
+}

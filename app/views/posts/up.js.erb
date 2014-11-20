@@ -1,0 +1,10 @@
+$('#post-<%= @post.id %>-score').html('<%= @post.cached_weighted_score %>');
+
+<% if current_user.liked? @post %>
+	$('#post-<%= @post.id %>-up').addClass('voted');
+
+<% else %>
+	$('#post-<%= @post.id %>-up').removeClass('voted');
+<% end %>
+
+$('#post-<%= @post.id %>-down').removeClass('voted');

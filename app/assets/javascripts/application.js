@@ -15,3 +15,15 @@
 //= require bootstrap.min
 //= require turbolinks
 //= require_tree .
+
+$('#community-menu').click(function (){
+	console.log('clicked');
+
+    dropDownFixPosition($('a'),$('.dropdown-menu'));
+});
+function dropDownFixPosition(button,dropdown){
+	var dropDownTop = button.offset().top + button.outerHeight();
+    dropdown.css('top', dropDownTop + "px");
+    dropdown.css('left', button.offset().left + "px");
+    
+}

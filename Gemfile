@@ -40,6 +40,7 @@ gem 'cancancan'
 gem 'rolify'
 gem 'simple_form'
 gem 'nokogiri'
+gem 'acts_as_votable', '~> 0.10.0'
 
 group :development do
 	gem 'annotate'

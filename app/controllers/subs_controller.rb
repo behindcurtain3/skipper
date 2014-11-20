@@ -49,7 +49,7 @@ class SubsController < ApplicationController
         format.html { redirect_to @sub, notice: 'Sub was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render action: 'edit', notice: @sub.errors }
         format.json { render json: @sub.errors, status: :unprocessable_entity }
       end
     end

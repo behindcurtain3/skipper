@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-	before_filter :authenticate_user!, only: [:new, :selfie, :create_url, :create_selfie]
-	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_filter :authenticate_user!, only: [:new, :selfie, :create_url, :create_selfie, :up, :down]
+	before_action :set_post, only: [:up, :down, :show, :edit, :update, :destroy]
 	before_action :set_sub, only: [:show, :new, :selfie, :create_url, :create_selfie]
 
 	def show
@@ -43,6 +43,30 @@ class PostsController < ApplicationController
         format.html { render action: 'selfie' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def up
+    if current_user.liked? @post
+      @post.unliked_by current_user
+    else
+      @post.liked_by current_user
+    end    
+
+    respond_to do |format|
+      format.js
+    end   
+  end
+
+  def down
+    if current_user.disliked? @post
+      @post.undisliked_by current_user
+    else
+      @post.disliked_by current_user
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 
