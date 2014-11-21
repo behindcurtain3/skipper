@@ -1,15 +1,15 @@
-<div id="comment_<%= comment.id %>" class="comment_box<% if comment.parent_id.nil? %> comment_no_indext<% else %> comment_indent<% end %>">
-  <button class="btn btn-link" data-toggle="collapse" data-target="#comment_<%= comment.id %>_content"><span class="fa fa-minus-square"></span></button>
+<div id="comment_<%= comment.id %>" class="comment-box<% if comment.parent_id.nil? %> comment-no-indent<% else %> comment-indent<% end %>">
+  <button class="btn btn-link" data-toggle="collapse" data-target="#commen_<%= comment.id %>_content"><span class="fa fa-minus-square"></span></button>
   <div id="comment_<%= comment.id %>_content">
     <%= link_to comment.user.username, user_path(comment.user) %> <small>posted <%= time_ago_in_words comment.created_at %> ago</small>
     <div class="comment">
   	  <%= simple_format h comment.content %>
     </div>
-    <div id="comment_<%= comment.id %>_votes" class="vote_box">
+    <div id="comment_<%= comment.id %>_votes" class="vote-box">
       <small>
       <% if user_signed_in? %>
-      <%= link_to like_comment_path(comment), :remote => true, :class => current_user.liked?(comment) ? "inactive already_voted" : nil, :id => "comment_#{comment.id}_likes_link" do %><span class="glyphicon glyphicon-thumbs-up"></span> <%= t 'comments.like' %><% end %>&nbsp;
-      <%= link_to dislike_comment_path(comment), :remote => true, :class => current_user.disliked?(comment) ? "inactive already_voted" : nil, :id => "comment_#{comment.id}_dislikes_link" do %><span class="glyphicon glyphicon-thumbs-down"></span> <%= t 'comments.dislike' %><% end %>
+      <%= link_to like_comment_path(comment), :remote => true, :class => current_user.liked?(comment) ? "inactive already-voted" : nil, :id => "comment_#{comment.id}_likes_link" do %><span class="glyphicon glyphicon-thumbs-up"></span> <%= t 'comments.like' %><% end %>&nbsp;
+      <%= link_to dislike_comment_path(comment), :remote => true, :class => current_user.disliked?(comment) ? "inactive already-voted" : nil, :id => "comment_#{comment.id}_dislikes_link" do %><span class="glyphicon glyphicon-thumbs-down"></span> <%= t 'comments.dislike' %><% end %>
       <% end %>
       <span id="comment_<%= comment.id %>_wisdom"><strong><%= comment.cached_votes_score %> <%= t 'comments.score' %></strong></span> <% unless user_signed_in? %><span><%= link_to 'Sign in to reply', new_user_session_path %></span> <% end %><span id="comment_<%= comment.id %>_vote_status" class="text-danger"></span> 
 
@@ -25,7 +25,6 @@
     </div>  
   </div>
   <div id="comment_<%= comment.id %>_reply"></div>
-
   <%
     if depth.nil?
       depth = 0
@@ -33,7 +32,6 @@
 
     depth = depth + 1
   %>
-
   <div id="comment_<%= comment.id %>_children">
     <% if depth >= maxdepth %>
       <% if comment.children.any? %>

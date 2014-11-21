@@ -42,7 +42,7 @@
 	<div class="row-fluid clearfix">
 		<div class="col-md-9 column">		
 			<ul class="breadcrumb clear-bottom">
-			  <li><%= link_to t(:nav_home), root_path %> <small><%= t :separator %></small> <%= link_to t(:nav_all), root_path %></li>
+			  <li><span class="fa fa-home"></span>&nbsp; <%= link_to t(:nav_home), root_path %> <small><%= t :separator %></small> <%= link_to t(:nav_all), root_path %></li>
 			  <% if content_for? :breadcrumb %>
 			  	<li class="active"><%= yield :breadcrumb %></li>
 			  <% end %>

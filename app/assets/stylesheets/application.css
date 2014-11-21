@@ -166,17 +166,17 @@ body {
 }
 
 
-.new_comment {
+.new-comment {
   margin-bottom: 20px;
 }
 
-.comment_box {
+.comment-box {
   border-left: 2px inset rgba(0, 0, 0, 0.2);
   padding:10px 0 10px 10px;
   margin-bottom: 2px;
 }
 
-.comment_box:hover {
+.comment-box:hover {
   border-left: 2px inset rgba(255, 0, 0, 0.7);
 }
 
@@ -185,7 +185,7 @@ body {
   margin-left: 5px;
 }
 
-.comment_box_reply {
+.comment-box-reply {
   background-color: rgba(255, 0, 0, 0.1);
 }
 
@@ -194,7 +194,7 @@ body {
   margin-right: 5px;
 }
 
-.vote_box {
+.vote-box {
   margin-bottom: 10px;
   padding-left: 10px;
 }
@@ -204,6 +204,6 @@ body {
   cursor: default;
 }
 
-.already_voted, .already_voted a {
+.already-voted, .already-voted a {
   color: rgba(0, 0, 0, 0.3);
 }

@@ -42,6 +42,10 @@ en:
   breadcrumb_top: "Top"
   breadcrumb_hot: "Hot"
   breadcrumb_new: "New"
+  comments_link:
+    zero: "%{count} comments"
+    one: "%{count} comment"
+    other: "%{count} comments"
   login: "Login"
   logout: "Logout"
   lurker_length: "lurker for %{time}"
@@ -51,6 +55,7 @@ en:
   nav_random: "Random"
   post_new: "Submit a link"
   post_selfie: "Submit a post"
+  post_tag: "submitted <time title='%{title}'>%{time} ago</time> by %{name}"
   separator: "-"
   sub_create: "Create a community"
   sub_edit: "Edit this community"
