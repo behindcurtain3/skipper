@@ -1,13 +1,13 @@
-<div class="sidebar">
-	<h4 class="pull-left"<% if user_signed_in? %> style="padding-top: 0px;"<% end %>><strong><%= @sub.name %></strong></h4>
-	<%= link_to t(:post_new), sub_new_path(@sub), :class => "btn btn-default btn-group btn-group-justified" %>
-	<br>
-	<%= link_to t(:post_selfie), sub_selfie_path(@sub), :class => "btn btn-default btn-group btn-group-justified" %>
-	<br>
-	<div class="stats">
-			<div class="pull-right">
-				<%= render 'subs/subscription_form' %>
-			</div>	
+<h4 class="pull-left"<% if user_signed_in? %> style="padding-top: 0px;"<% end %>><strong><%= @sub.name %></strong></h4>
+<%= link_to t(:post_new), sub_new_path(@sub), :class => "btn btn-default btn-group btn-group-justified" %>
+<br>
+<%= link_to t(:post_selfie), sub_selfie_path(@sub), :class => "btn btn-default btn-group btn-group-justified" %>
+<br>
+<div class="stats">
+		<div class="pull-right">
+			<%= render 'subs/subscription_form' %>
+		</div>	
+		<p>
 			<strong id="subscribers" class="stat">
 	      <%= @sub.subscribers.count %>
 	    </strong>
@@ -17,14 +17,12 @@
 	      0
 	    </strong>
 	    <%= t :sub_visitor_count %>
-	</div>
-	<div class="description">
-		<small><strong><%= @sub.title %></strong></small><br>
-		<%= @sub.description %>
-	</div>
-	<p><small><%= t :sub_captain %>: <%= link_to @sub.creator.username, user_path(@sub.creator) %></small>
-	<br><small><%= t :sub_crew %>:</small></p>
-	<ul>
-		<li><%= link_to "Example crew", current_user %></li>
-	</ul>
+    </p>
 </div>
+<div class="description">
+	<small><strong><%= @sub.title %></strong></small><br>
+	<%= @sub.description %>
+</div>
+<h5><strong><%= t :sub_leaders %></strong></h5>
+<p><span class="fa fa-user" title="<%= t :sub_captain %>"></span><small> <%= link_to @sub.creator.username, user_path(@sub.creator) %></small>
+<br><span class="fa fa-users" title="<%= t :sub_crew %>"></span><small> <%= link_to "Example crew", current_user %></small></p>

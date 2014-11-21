@@ -9,7 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap.min
+ *= require custom_bootstrap/custom_bootstrap
+ *= require font-awesome
  *= require_tree .
  */
 
@@ -17,15 +18,21 @@ body {
    overflow-x: hidden;
 }
 
+.faded {
+	color: #999;
+}
+
+/*
  .post-content>a, 
- .post-content>h4>a,
+ .post-content>h4>a {
+ 	color: #333;
+ }
+ 
+ .post-content>h6>a,
  .post-content>p>a {
  	color: #551a8b;
  }
-
- .post-content>h4 {
- }
-
+*/
  .post-content>h6 {
  	margin-top: 1px;
  }
@@ -33,7 +40,7 @@ body {
 .clear-bottom {
 	margin-bottom: 0px !important;
 }
-
+/*
 .clear-horizontal-padding {
 	padding-left: 0px !important;
 	padding-right: 0px !important;
@@ -53,19 +60,16 @@ body {
 }
 
 .navbar-inverse {
-	background-color: #029acf !important;
-	border-color: #029acf !important;
-	opacity: 0.7;
+	background-color: #c03f11 !important;
+	border-color: #c03f11 !important;
+	border: 0;
+	opacity: 1;
 }
-
-.navbar-static-top {
-	min-height: 25px !important;
+*/
+.navbar-right {
+	padding-right: 15px;
 }
-
-.navbar-collapse.collapse {
-	height: 25px !important;
-}
-
+/*
 .nav-sm>li>a {
 	padding-top: 3px !important;
 	padding-bottom: 3px !important;
@@ -77,7 +81,7 @@ body {
 	padding-left: 2px !important;
 	padding-right: 5px !important;
 }
-
+*/
 .stats {
 	margin-bottom: 10px;
 }
@@ -131,4 +135,16 @@ body {
 
 .voted>a {
 	color: #d9230f !important;
+}
+
+.subscribe {
+	width: 100px;
+}
+
+.sidebar {
+	padding-right: 5px !important;
+}
+
+.breadcrumb {
+	padding-left: 0px !important;
 }

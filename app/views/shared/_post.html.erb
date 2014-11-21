@@ -1,12 +1,12 @@
 <div class="post">
 	<span class="rank"><%= rank %></span>
 	<div class="score-col">
-		<div class="uparrow<% if current_user.liked?(post) then %> voted<% end %>" id="post-<%= post.id %>-up">
-			<%= link_to up_post_path(post), :remote => true do %><span class="glyphicon glyphicon-chevron-up"></span><% end %>
+		<div class="uparrow<% if current_user.present? && current_user.liked?(post) then %> voted<% end %>" id="post-<%= post.id %>-up">
+			<%= link_to up_post_path(post), :remote => true do %><span class="fa fa-arrow-up"></span><% end %>
 		</div>
 		<div class="score"><span id="post-<%= post.id %>-score"><%= post.cached_weighted_score %></span></div>
-		<div class="downarrow<% if current_user.disliked?(post) then %> voted<% end %>" id="post-<%= post.id %>-down">
-			<%= link_to down_post_path(post), :remote => true do %><span class="glyphicon glyphicon-chevron-down"></span><% end %>
+		<div class="downarrow<% if current_user.present? && current_user.disliked?(post) then %> voted<% end %>" id="post-<%= post.id %>-down">
+			<%= link_to down_post_path(post), :remote => true do %><span class="fa fa-arrow-down"></span><% end %>
 		</div>
 	</div>
 	<div class="post-content">
@@ -17,7 +17,7 @@
 				<%= link_to post.title, sub_post_path(post.sub, post) %>
 			<% end %>
 		</h4>
-	  <h6 class="clear-bottom">submitted <time title="<%= post.created_at %>"><%= time_ago_in_words post.created_at %> ago</time> by <%= link_to post.user.username, user_path(post.user) %></h6>
-		<%= link_to "comments", sub_post_path(post.sub, post) %>
+	  <h6 class="clear-bottom faded">submitted <time title="<%= post.created_at %>"><%= time_ago_in_words post.created_at %> ago</time> by <%= link_to post.user.username, user_path(post.user) %><br>
+		<%= link_to "comments", sub_post_path(post.sub, post) %></h6>
 	</div>
 </div>

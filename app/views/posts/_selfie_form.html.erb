@@ -1,5 +1,5 @@
 <div class="well">
-<%= form_for @post, :url => url_for(:controller => 'posts', :action => 'create_selfie') do |f| %>
+<%= form_for @post, :url => url_for(:controller => 'posts', :action => 'create_selfie'), :html => { :class => "form-horizontal"} do |f| %>
 <fieldset>
   <legend>Submit a self post on <%= link_to @sub.name, sub_path(@sub) %></legend>
   <% if @post.errors.any? %>
@@ -8,20 +8,30 @@
 
   <% if f.object.new_record? %>
 
-  <div class="form-group"><%= f.label :title %> <span class="pull-right">140 characters</span><br>
-  <%= f.text_field :title, :autofocus => true, :class => "form-control", :placeholder => "Title" %></div>
-
+  <div class="form-group">
+    <%= f.label :title, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, :autofocus => true, :class => "form-control", :placeholder => "Title" %>
+      <span class="help-block">300 characters max</span>
+    </div>
+  </div>
   <% end %>
 
-  <div class="form-group"><%= f.label :text %><br>
-  <%= f.text_area :text, :class => "form-control", :placeholder => "Self text", :rows => "8" %></div>
+  <div class="form-group">
+    <%= f.label :text, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_area :text, :class => "form-control", :placeholder => "Self text", :rows => "8" %>
+    </div>
+  </div>
 
-  <div class="actions">
-  <% if f.object.new_record? %>
-    <%= f.submit "Submit Post", :class => "btn btn-success" %>
-  <% else %>
-    <%= f.submit "Save", :class => "btn btn-success" %>
-  <% end %>
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-2">
+      <% if f.object.new_record? %>
+        <%= f.submit "Submit Post", :class => "btn btn-success" %>
+      <% else %>
+        <%= f.submit "Save", :class => "btn btn-success" %>
+      <% end %>
+    </div>
   </div>
 </fieldset>
 <% end %>

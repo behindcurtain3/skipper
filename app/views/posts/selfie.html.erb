@@ -1,11 +1,6 @@
 <% provide(:title, link_to(@sub.name, sub_path(@sub))) %>
-<div class="row clearfix">
-  <div class="col-md-6 column">
-    <%= render 'selfie_form' %>
-  </div>
-  <div class="col-md-3 column">
-  </div>
-  <div class="col-md-3 column">
-    <%= render 'shared/sidebar' %>
-  </div>
-</div>
+<% content_for :sidebar do %>
+	<%= render 'shared/sidebar' %>
+<% end %>
+
+<%= render 'selfie_form' %>

@@ -1,9 +1,20 @@
 <% provide(:title, link_to(@sub.name, sub_path(@sub))) %>
+<% content_for :filter do %>
+	<a class="dropdown-toggle" href="#">
+		<strong><%= t :breadcrumb_hot %></strong>
+	</a> <small><%= t :separator %></small>
+	<a class="dropdown-toggle" href="#">
+		<%= t :breadcrumb_new %>
+	</a> <small><%= t :separator %></small>
+	<a class="dropdown-toggle" href="#">
+		<%= t :breadcrumb_top %>
+	</a>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render 'shared/sidebar' %>
+<% end %>
 <div class="row clearfix">
-  <div class="col-md-9 column">
+  <div class="col-md-12 column">
   	<%= render 'shared/post_list' %>
   </div>
-  <div class="col-md-3 column">
-    <%= render 'shared/sidebar' %>
-	</div>
 </div>

@@ -41,9 +41,13 @@ gem 'rolify'
 gem 'simple_form'
 gem 'nokogiri'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'font-awesome-rails'
+
+gem 'less-rails-bootstrap'
 
 group :development do
 	gem 'annotate'
+  gem 'therubyracer', :platforms => :ruby, :require => 'v8'
 end
 
 group :production do
