@@ -1,0 +1,14 @@
+<% if signed_in? %>
+	<%= render 'comments/form', :post => post, :remote => true %>
+
+	<script type="text/javascript">
+		$('#comment_content').blur(function(){
+		if( $('#comment_content').val().length == 0 )
+			$('#comment_content').animate({rows: 2}, 50);
+	});
+	</script>
+
+<% else %>
+	<%= link_to 'Sign In', new_user_session_path, :class => "btn btn-primary btn-sm", :style => "margin-bottom: 10px;" %> <strong>to post comments</strong><br />
+
+<% end %>

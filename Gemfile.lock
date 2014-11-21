@@ -36,6 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts_as_tree (2.1.0)
+      activerecord (>= 3.0.0)
     acts_as_votable (0.10.0)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
@@ -63,6 +65,8 @@ GEM
     execjs (2.2.2)
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -169,11 +173,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_tree
   acts_as_votable (~> 0.10.0)
   annotate
   cancancan
   devise
   font-awesome-rails
+  friendly_id (~> 5.0.4)
   jbuilder (~> 1.2)
   jquery-rails
   less-rails-bootstrap

@@ -1,5 +1,5 @@
 <div class="well">
-<%= form_for @post, :url => url_for(:controller => 'posts', :action => 'create_url'), :html => {:class => "form-horizontal"} do |f| %>
+<%= form_for [@sub, @post], :url => { :controller => :posts, :action => :create, :selfie => params[:selfie]}, :html => {:class => "form-horizontal"} do |f| %>
 <fieldset>
   <legend><% if f.object.new_record? %>Submit a<% else %>Edit<% end%> link on <%= link_to @sub.name, sub_path(@sub) %></legend>
   <% if @post.errors.any? %>
@@ -17,19 +17,32 @@
   </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :url, :class => "col-lg-2 control-label" %>
-    <div class="col-lg-10">
-      <%= f.url_field :url, :class => "form-control", :placeholder => "URL" %>
+  <% if params[:selfie].present? then %>
+    <div class="form-group">
+      <%= f.label :text, :class => "col-lg-2 control-label" %>
+      <div class="col-lg-10">
+        <%= f.text_area :text, :class => "form-control", :placeholder => "Self text", :rows => "8" %>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :url, :class => "col-lg-2 control-label" %>
+      <div class="col-lg-10">
+        <%= f.url_field :url, :class => "form-control", :placeholder => "URL" %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <div class="col-lg-10 col-lg-offset-2">
       <% if f.object.new_record? %>
-        <%= f.submit "Submit Url", :class => "btn btn-success" %>
+        <% if params[:selfie].present? then %>
+          <%= f.submit "Submit Post", :class => "btn btn-primary" %>
+        <% else %>
+          <%= f.submit "Submit Url", :class => "btn btn-primary" %>
+        <% end %>
       <% else %>
-        <%= f.submit "Save", :class => "btn btn-success" %>
+        <%= f.submit "Save", :class => "btn btn-primary" %>
       <% end %>
     </div>
   </div>

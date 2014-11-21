@@ -1,0 +1,1 @@
+$('#comment_<%= @comment.id %>_reply').html("<%= escape_javascript(render 'form', :post => @comment.post, :parent => @comment.id, :remote => true) %>");

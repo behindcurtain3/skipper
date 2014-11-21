@@ -1,5 +1,7 @@
 <div class="post">
+	<% if defined?(rank) %>
 	<span class="rank"><%= rank %></span>
+	<% end %>
 	<div class="score-col">
 		<div class="uparrow<% if current_user.present? && current_user.liked?(post) then %> voted<% end %>" id="post-<%= post.id %>-up">
 			<%= link_to up_post_path(post), :remote => true do %><span class="fa fa-arrow-up"></span><% end %>

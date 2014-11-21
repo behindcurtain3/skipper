@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
 
 	has_many :creations, foreign_key: "creator_id", class_name: "Sub"
 	has_many :posts
+  has_many :comments
   has_many :active_subscriptions, class_name: "Subscription", foreign_key: "subscriber_id", dependent: :destroy
   has_many :subscriptions, through: :active_subscriptions, source: :sub
 

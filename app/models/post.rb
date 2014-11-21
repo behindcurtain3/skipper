@@ -21,6 +21,8 @@
 #
 
 class Post < ActiveRecord::Base
+	extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
 	resourcify
 	acts_as_votable
 	before_create :randomize_token
@@ -28,6 +30,7 @@ class Post < ActiveRecord::Base
 	validates_presence_of :title
 	validates_length_of :title, :minimum => 4
 	validates_length_of :title, :maximum => 300
+	validates :title, format: { with: /\A[A-Za-z0-9 .,!?$#%&()-+*~:"']+\z/i }
 	validates_presence_of :user_id
 	validates_presence_of :sub_id
 	validate :has_url_or_text
@@ -35,10 +38,16 @@ class Post < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :sub
+	has_many :comments
 
-	def to_param
-		token
-	end
+	# Try building a slug based on the following fields in
+  # increasing order of specificity.
+  def slug_candidates
+    [
+      :title,
+      [:title, :randomizer]
+    ]
+  end
 
 	def has_url_or_text
 		unless [url?, text?].include?(true)
@@ -49,9 +58,16 @@ class Post < ActiveRecord::Base
 	private
 
 		def randomize_token
-		  begin
-		    self.token = SecureRandom.urlsafe_base64(6, false)
-		  end while Post.where(:token => self.token).exists?
-		end 
+			if self.token.nil?
+			  begin
+			    self.token = SecureRandom.urlsafe_base64(5, false)
+			  end while Post.where(:token => self.token).exists?
+			end
+		end
+
+		def randomizer
+			randomize_token
+			self.token
+		end
 
 end

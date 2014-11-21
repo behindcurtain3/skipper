@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Skipper</title>
+  <title><%= t :brand %><% if content_for? :title %>: <%= yield :title %><% end %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -10,9 +10,7 @@
 <div class="navbar navbar-inverse navbar-static-top navbar-no-curves clear-bottom">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-secondary"> 
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
+			<span class="fa-bars">
 		</button> 
 		<strong><%= link_to t(:brand), root_path, :class => "navbar-brand" %></strong>
 	</div>
@@ -31,11 +29,11 @@
 		</ul>
     <ul class="nav navbar-nav navbar-right">
 			<% if user_signed_in? %>
-				<li><%= link_to current_user.username, user_path(current_user) %></li>
-				<li><%= link_to t(:logout), destroy_user_session_path, method: :delete %></li>
+				<li><%= link_to user_path(current_user) do %><span class="fa fa-user"></span>&nbsp; <%= current_user.username %><% end %></li>
+				<li><%= link_to destroy_user_session_path, method: :delete, :title => t(:logout) do %><span class="fa fa-sign-out"></span><% end %></li>
 			<% else %>
 				<li><%= link_to t(:register), remote_sign_up_path, :remote => true %></li>
-				<li><%= link_to t(:login), new_user_session_path %></li>
+				<li><%= link_to new_user_session_path do %><span class="fa fa-sign-in"></span>&nbsp; <%= t :login %><% end %></li>
 			<% end %>
 		</ul>
 	</div>
@@ -45,8 +43,8 @@
 		<div class="col-md-9 column">		
 			<ul class="breadcrumb clear-bottom">
 			  <li><%= link_to t(:nav_home), root_path %> <small><%= t :separator %></small> <%= link_to t(:nav_all), root_path %></li>
-			  <% if content_for? :title %>
-			  	<li class="active"><%= yield :title %></li>
+			  <% if content_for? :breadcrumb %>
+			  	<li class="active"><%= yield :breadcrumb %></li>
 			  <% end %>
 			  <% if content_for? :filter %>
 			  	<li><%= yield :filter %>

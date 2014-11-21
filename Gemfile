@@ -41,7 +41,9 @@ gem 'rolify'
 gem 'simple_form'
 gem 'nokogiri'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'acts_as_tree'
 gem 'font-awesome-rails'
+gem 'friendly_id', '~> 5.0.4'
 
 gem 'less-rails-bootstrap'
 

@@ -13,22 +13,28 @@ Skipper::Application.routes.draw do
   post '/c/all', :to => 'subs#create'
 
   resources :subs, :path => "c", except: [:index] do
-  	get :new, to: 'posts#new'
-  	get :selfie, to: 'posts#selfie'
-  	post :create_url, to: 'posts#create_url'
-  	post :create_selfie, to: 'posts#create_selfie'
-
-  	resources :posts, except: [:new, :selfie, :create_url, :create_selfie]
+    resources :posts, only: [:index, :show, :new, :create]
+    #member do 
+      #get 'comments/:post_id(/:display)', to: 'posts#show', :as => :comments
+    #end
 
     member do
       get :subscribers
     end
   end
 
-  resources :subscriptions, only: [:create, :destroy]
-  resources :posts do
+  resources :posts, only: [:edit, :update, :destroy, :up, :down] do
     member do
       get :up, :down
+    end
+  end
+
+  resources :subscriptions, only: [:create, :destroy]
+  
+  resources :comments, only: [:create] do
+    member do
+      post :reply
+      get :like, :dislike, :children
     end
   end
 

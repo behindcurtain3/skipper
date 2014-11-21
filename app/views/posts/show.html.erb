@@ -1,0 +1,23 @@
+<% provide :title, @sub.title %>
+<% provide :breadcrumb, link_to(@sub.name, sub_path(@sub)) %>
+<% provide :filter, 'Comments' %>
+<% content_for :sidebar do %>
+	<%= render 'shared/sidebar' %>
+<% end %>
+
+<%= render 'shared/post', :post => @post %>
+
+<div class="clearfix"></div>
+<div class="comments">
+	<h4 class="clear-bottom comments-title">Comments:</h4>
+	<hr class="comments-separator">
+	<%= render 'comments/comments', :post => @post %>
+
+	<div id="comment_added"></div>
+
+	<% if @comments.any? %>
+		<%= render :partial => 'comments/comment', :collection => @comments, :locals => {:depth => @depth, :maxdepth => @maxdepth } %>
+	<% else %>
+		No comments
+	<% end %>
+</div>

@@ -1,0 +1,11 @@
+<% if @comment.vote_registered? %>
+	$('#comment_<%= @comment.id %>_wisdom').html('<strong><%= @comment.cached_votes_score %> <%= t 'comments.score' %></strong>');
+
+	$('#comment_<%= @comment.id %>_likes_link').addClass('inactive');
+	$('#comment_<%= @comment.id %>_likes_link').addClass('already_voted');
+
+	$('#comment_<%= @comment.id %>_dislikes_link').removeClass('inactive');
+	$('#comment_<%= @comment.id %>_dislikes_link').removeClass('already_voted');
+<% else %>
+	$('#comment_<%= @comment.id %>_vote_status').html('Unable to process request');
+<% end %>

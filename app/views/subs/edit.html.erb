@@ -1,10 +1,7 @@
-<% provide(:title, link_to(@sub.name, sub_path(@sub))) %>
-<div class="row clearfix">
-  <div class="col-md-6 column">
-    <%= render 'form' %>
-  </div>
-  <div class="col-md-3 column"></div>
-  <div class="col-md-3 column">
-    <%= render 'shared/sidebar' %>
-  </div>
-</div>
+<% provide(:title, @sub.title) %>
+<% provide(:breadcrumb, link_to(@sub.name, sub_path(@sub))) %>
+<% content_for :sidebar do %>
+	<%= render 'shared/sidebar' %>
+<% end %>
+
+<%= render 'form' %>

@@ -35,10 +35,10 @@
   <div class="form-group">
     <div class="col-lg-10 col-lg-offset-2">
       <% if f.object.new_record? %>
-        <%= f.submit "Create Sub", :class => "btn btn-success" %>
+        <%= f.submit "Create Sub", :class => "btn btn-primary" %>
       <% else %>
         <%= link_to 'Cancel', sub_path(@sub), :class => "btn btn-default" %>
-        <%= f.submit "Save", :class => "btn btn-success" %>
+        <%= f.submit "Save", :class => "btn btn-primary" %>
       <% end %>
     </div>
   </div>

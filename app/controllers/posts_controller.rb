@@ -1,46 +1,39 @@
 class PostsController < ApplicationController
-	before_filter :authenticate_user!, only: [:new, :selfie, :create_url, :create_selfie, :up, :down]
+	before_filter :authenticate_user!, only: [:new, :create, :up, :down]
 	before_action :set_post, only: [:up, :down, :show, :edit, :update, :destroy]
-	before_action :set_sub, only: [:show, :new, :selfie, :create_url, :create_selfie]
+	before_action :set_sub, only: [:index, :show, :new, :selfie, :create]
 
+  def index
+    redirect_to sub_path(@sub)
+  end
+
+  # GET /c/[:sub_id]/posts/[:id]
 	def show
+    @comments = Comment.all
+    @comments = @comments.where("post_id = ?", @post.id)
+    @comments = @comments.where("parent_id is null")
+    @comments = @comments.order("cached_votes_score desc")
+    #.page(params[:page]).per(25)
+
+    @depth = 0
+    @maxdepth = 2
 	end
 
-	# GET /r/[:sub_id]/new
+	# GET /c/[:sub_id]/posts/new
   def new
     @post = Post.new
   end
 
-  # GET /r/[:sub_id]/selfie
-  def selfie
-  	@post = Post.new
-  end
-
-  def create_url
+  def create
     @post = current_user.posts.create(post_params)
     @post.sub = @sub
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to sub_post_path(@sub, @post), notice: 'Post was successfully created.' }
+        format.html { redirect_to sub_post_path(@sub, @post) }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def create_selfie
-  	@post = current_user.posts.create(post_params)
-  	@post.sub = @sub
-
-  	respond_to do |format|
-      if @post.save
-        format.html { redirect_to sub_post_path(@sub, @post), notice: 'Post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @post }
-      else
-        format.html { render action: 'selfie' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -73,7 +66,7 @@ class PostsController < ApplicationController
 	private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find_by_token(params[:id])
+      @post = Post.friendly.find(params[:id])
     end
 
     def set_sub

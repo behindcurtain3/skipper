@@ -24,6 +24,9 @@ en:
     attributes:
       user:
         email: "E-mail address"
+        password: "Password"
+        password_confirmation: "Confirm Password"
+        username: "Username"
       sub:
         name: "Name"
         title: "Title"
@@ -63,5 +66,8 @@ en:
   sub_crew: "Moderator"
   sub_list: "Your Communities"
   register: "Sign up"
+  user_create: "Create an account"
+  user_save: "Save"
+  user_submit: "Create account"
   verb: "op"
   welcome: "Welcome, Sign in below"
