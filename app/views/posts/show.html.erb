@@ -6,7 +6,14 @@
 <% end %>
 
 <%= render 'shared/post', :post => @post %>
-
+<% if @post.text.present? %>
+<div class="clearfix"></div>
+<div class="well">
+	<p>
+		<%= @post.text %>
+	</p>
+</div>
+<% end %>
 <div class="clearfix"></div>
 <div class="comments">
 	<h4 class="clear-bottom comments-title">Comments:</h4>

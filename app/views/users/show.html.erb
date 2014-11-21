@@ -1,4 +1,5 @@
-<% provide(:title, link_to(@user.username, user_path(@user))) %>
+<% provide(:title, @user.username) %>
+<% provide(:breadcrumb, link_to(@user.username, user_path(@user))) %>
 <% content_for :sidebar do %>
   <%= render 'sidebar', :user => @user %>
 <% end %>

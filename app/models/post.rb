@@ -30,7 +30,7 @@ class Post < ActiveRecord::Base
 	validates_presence_of :title
 	validates_length_of :title, :minimum => 4
 	validates_length_of :title, :maximum => 300
-	validates :title, format: { with: /\A[A-Za-z0-9 .,!?$#%&()-+*~:"']+\z/i }
+	validates :title, format: { with: /\A[\w\W]+\z/i }
 	validates_presence_of :user_id
 	validates_presence_of :sub_id
 	validate :has_url_or_text
