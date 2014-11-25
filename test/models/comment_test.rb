@@ -37,4 +37,9 @@ class CommentTest < ActiveSupport::TestCase
 		@comment.post_id = nil
 		assert_not @comment.valid?
 	end
+	
+	test "token should be present" do
+		@comment.token = ""
+		assert_not @comment.valid?
+	end
 end
