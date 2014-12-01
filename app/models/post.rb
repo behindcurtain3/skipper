@@ -40,6 +40,35 @@ class Post < ActiveRecord::Base
 	belongs_to :sub
 	has_many :comments
 
+	scope :popular, -> { order("cached_weighted_score desc") }
+	scope :newest, -> { order("created_at desc") }
+	scope :liked, -> { order("cached_votes_up desc") }
+	scope :last_week, lambda { where("created_at >= :date", :date => 1.week.ago) }
+	scope :last_month, lambda { where("created_at >= :date", :date => 1.month.ago) }
+
+	def get_posts(tag, order, filter)
+
+		posts = Post.all
+
+		unless tag.blank?
+			posts = posts.tagged_with(tag)
+		end
+
+		# apply scopes for ordering
+		posts = posts.popular if order == "popular"
+		posts = posts.newest if order == "newest"
+		posts = posts.liked if order == "liked"
+
+		# apply scopes for filtering
+		posts = posts.last_week if filter == "week"
+		posts = posts.last_month if filter == "month"
+
+		# only return active posts
+		posts = posts.running
+
+		return posts
+	end
+
 	# Try building a slug based on the following fields in
   # increasing order of specificity.
   def slug_candidates

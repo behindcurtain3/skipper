@@ -26,6 +26,9 @@
 	        </ul>
 	      </li>
      	<% end %>
+     	<li><%= link_to root_path do %><span class="fa fa-home"></span> <%= t('nav.home') %><% end %></li>
+     	<li><%= link_to subs_path do %><%= t('nav.all') %><% end %></li>
+     	<li><%= link_to t('nav.random'), random_path %></li>
 		</ul>
     <ul class="nav navbar-nav navbar-right">
 			<% if user_signed_in? %>
@@ -42,7 +45,6 @@
 	<div class="row-fluid clearfix">
 		<div class="col-md-9 column">		
 			<ul class="breadcrumb clear-bottom">
-			  <li><span class="fa fa-home"></span>&nbsp; <%= link_to t(:nav_home), root_path %> <small><%= t :separator %></small> <%= link_to t(:nav_all), root_path %></li>
 			  <% if content_for? :breadcrumb %>
 			  	<li class="active"><%= yield :breadcrumb %></li>
 			  <% end %>

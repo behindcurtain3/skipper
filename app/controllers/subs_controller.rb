@@ -1,11 +1,25 @@
 class SubsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  include ApplicationHelper
+  before_filter :authenticate_user!, :except => [:index, :all, :show]
   before_action :set_sub, only: [:show, :edit, :update, :destroy]
 
   # GET /subs
   # GET /subs.json
   def index
     @subs = Sub.all
+  end
+
+  def all
+    @subs = Sub.all
+    @posts = get_posts(nil, params[:tag], params[:d], params[:f])
+    #@posts = @posts.page(params[:page]).per(25)
+  end
+
+  def random
+    offset = rand(Sub.count)
+    rand_record = Sub.offset(offset).first
+
+    redirect_to rand_record
   end
 
   # GET /subs/1

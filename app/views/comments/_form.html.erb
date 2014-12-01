@@ -8,6 +8,16 @@
 		<%= f.text_area :content, :rows => "2", class: "form-control expand", onfocus: "this.rows=5;", placeholder: local_assigns.has_key?(:parent) ? "Post reply" : "Post comment" %>
 	</div>
 	<div class="form-group">
-		<%= f.submit 'Comment', class: "btn btn-primary btn-sm" %>  as <%= link_to current_user.username, user_path(current_user) %>
+		<% if local_assigns.has_key?(:parent) %>
+		<%= f.submit 'Post Reply', class: "btn btn-primary btn-sm" %>
+		<%= f.button 'Cancel', id: "comment_#{parent}_reset", type: "reset", class: "btn btn-default btn-sm" %>
+		<script type="text/javascript">
+    $("#comment_<%= parent %>_reset").click(function() {
+        $("#comment_<%= parent %>_reply").html("");
+    });
+    </script>
+		<% else %>
+		<%= f.submit 'Comment', class: "btn btn-primary btn-sm" %>
+		<% end %>
 	</div>
 <% end %>

@@ -9,7 +9,8 @@ Skipper::Application.routes.draw do
     end
   end
 
-  get '/c/all', to: 'subs#index', :as => :subs
+  get '/c/all', to: 'subs#all', :as => :subs
+  get '/c/random', to: 'subs#random', :as => :random
   post '/c/all', :to => 'subs#create'
 
   resources :subs, :path => "c", except: [:index] do

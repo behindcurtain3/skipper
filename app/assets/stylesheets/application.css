@@ -138,6 +138,11 @@ body {
 	min-width:40px;
 }
 
+.score-col-sm {
+	float: left;
+	min-width: 20px;
+}
+
 .uparrow,
 .downarrow,
 .score {
@@ -172,7 +177,7 @@ body {
 
 .comment-box {
   border-left: 2px inset rgba(0, 0, 0, 0.2);
-  padding:10px 0 10px 10px;
+  padding:0px 0 0px 0px;
   margin-bottom: 2px;
 }
 
@@ -190,6 +195,7 @@ body {
 }
 
 .reply {
+  margin-left: 5px;
   margin-top: 5px;
   margin-right: 5px;
 }
@@ -206,4 +212,8 @@ body {
 
 .already-voted, .already-voted a {
   color: rgba(0, 0, 0, 0.3);
+}
+
+.comment-well {
+	padding: 10px !important;
 }

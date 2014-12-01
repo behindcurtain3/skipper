@@ -20,7 +20,11 @@
 			<% end %>
 		</h4>
 	  <h6 class="clear-bottom faded">
-	  	<%= t(:post_tag, :title => post.created_at, :time => time_ago_in_words(post.created_at), :name => link_to(post.user.username, user_path(post.user))).html_safe %><br>
+	  	<% if @sub.blank? %>
+	  	<%= t(:post_tag_with_sub, :title => post.created_at, :time => time_ago_in_words(post.created_at), :name => link_to(post.user.username, user_path(post.user)), :sub => link_to(post.sub.name, sub_path(post.sub))).html_safe %>
+	  	<% else %>
+	  	<%= t(:post_tag, :title => post.created_at, :time => time_ago_in_words(post.created_at), :name => link_to(post.user.username, user_path(post.user))).html_safe %>
+	  	<% end %><br>
 		<%= link_to t(:comments_link, :count => post.comments.count), sub_post_path(post.sub, post) %></h6>
 	</div>
 </div>

@@ -8,10 +8,8 @@
 <%= render 'shared/post', :post => @post %>
 <% if @post.text.present? %>
 <div class="clearfix"></div>
-<div class="well">
-	<p>
-		<%= @post.text %>
-	</p>
+<div class="well comment-well">
+	<%= simple_format h @post.text %>
 </div>
 <% end %>
 <div class="clearfix"></div>

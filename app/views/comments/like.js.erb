@@ -1,5 +1,5 @@
 <% if @comment.vote_registered? %>
-	$('#comment_<%= @comment.id %>_wisdom').html('<strong><%= @comment.cached_votes_score %> <%= t 'comments.score' %></strong>');
+	$('#comment_<%= @comment.id %>_wisdom').html('<%= @comment.cached_votes_score %>');
 
 	$('#comment_<%= @comment.id %>_likes_link').addClass('inactive');
 	$('#comment_<%= @comment.id %>_likes_link').addClass('already_voted');
