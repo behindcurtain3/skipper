@@ -18,6 +18,7 @@
 #  cached_weighted_score   :integer          default("0")
 #  cached_weighted_total   :integer          default("0")
 #  cached_weighted_average :float            default("0.0")
+#  slug                    :string
 #
 
 require 'test_helper'
@@ -60,19 +61,13 @@ class PostTest < ActiveSupport::TestCase
   	assert_not @post.valid?
   end
 
-  test "title length should be long enough" do
-  	@post.title = "123"
+  test "title length should be at least 4 characters" do
+  	@post.title = "a" * 3
   	assert_not @post.valid?
   end
 
-  test "title length should not be too long" do
-  	@post.title = "12345678901234567890123456789012345678901234567890
-  								12345678901234567890123456789012345678901234567890
-  								12345678901234567890123456789012345678901234567890
-                  12345678901234567890123456789012345678901234567890
-                  12345678901234567890123456789012345678901234567890
-                  12345678901234567890123456789012345678901234567890
-                  12345678901234567890123456789012345678901234567890"
+  test "title length should be at most 300 characters" do
+  	@post.title = "a" * 301
 
   	assert_not @post.valid?
   end

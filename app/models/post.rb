@@ -18,6 +18,7 @@
 #  cached_weighted_score   :integer          default("0")
 #  cached_weighted_total   :integer          default("0")
 #  cached_weighted_average :float            default("0.0")
+#  slug                    :string
 #
 
 class Post < ActiveRecord::Base
@@ -27,12 +28,12 @@ class Post < ActiveRecord::Base
 	acts_as_votable
 	before_create :randomize_token
 
-	validates_presence_of :title
-	validates_length_of :title, :minimum => 4
-	validates_length_of :title, :maximum => 300
-	validates :title, format: { with: /\A[\w\W]+\z/i }
-	validates_presence_of :user_id
-	validates_presence_of :sub_id
+	validates :title, 
+		presence: true, 
+		length: { minimum: 4, maximum: 300 },
+		format: { with: /\A[\w\W]+\z/i }
+	validates :user_id, presence: true
+	validates :sub_id, presence: true
 	validate :has_url_or_text
 	validates :url, format: { with: URI.regexp(%w(http https)) }, if: Proc.new { |a| a.url.present? }
 

@@ -26,3 +26,11 @@
 duplicate:
   username: "Duplicate"
   encrypted_password: "password"
+clark:
+  username: "clark"
+  email: "clark@dailyplanet.com"
+  encrypted_password: "superman"
+lana:
+  username: "lana"
+  email: "lana@smallville.net"
+  encrypted_password: "ilikeclark"

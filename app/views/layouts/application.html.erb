@@ -18,10 +18,10 @@
 		<ul class="nav navbar-nav">
 			<% if user_signed_in? %>
 	      <li class="dropdown" id="community-menu">
-	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= t :sub_list %> <b class="caret"></b></a>
+	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= t 'sub.list' %> <b class="caret"></b></a>
 	        <ul class="dropdown-menu">
-	        	<% current_user.subscriptions.each do |subscription| %>
-	        	<li><%= link_to subscription.name, sub_path(subscription) %></li>
+	        	<% @communities.each do |community| %>
+	        	<li><%= link_to community.name, sub_path(community) %></li>
 	        	<% end %>
 	        </ul>
 	      </li>

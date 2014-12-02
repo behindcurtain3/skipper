@@ -1,25 +1,21 @@
-<h1>Listing crews</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @subs.each do |sub| %>
-      <tr>
-        <td><%= link_to 'Show', sub %></td>
-        <td><%= link_to 'Edit', edit_sub_path(sub) %></td>
-        <td><%= link_to 'Destroy', sub, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Sub', new_sub_path %>
+<% provide(:title, t('nav.home')) %>
+<% provide(:breadcrumb, link_to(t('nav.home'), root_path)) %>
+<% content_for :filter do %>
+  <a class="dropdown-toggle" href="#">
+    <strong><%= t 'breadcrumb.hot' %></strong>
+  </a> <small><%= t :separator %></small>
+  <a class="dropdown-toggle" href="#">
+    <%= t 'breadcrumb.new' %>
+  </a> <small><%= t :separator %></small>
+  <a class="dropdown-toggle" href="#">
+    <%= t 'breadcrumb.top' %>
+  </a>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render 'sidebar', :name => t('nav.home') %>
+<% end %>
+<div class="row clearfix">
+  <div class="col-md-12 column">
+    <%= render 'shared/post_list' %>
+  </div>
+</div>

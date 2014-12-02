@@ -1,0 +1,10 @@
+<h4 class="pull-left"<% if user_signed_in? %> style="padding-top: 0px;"<% end %>><strong><%= name %></strong></h4>
+<%= link_to new_sub_path, :class => "btn btn-primary btn-group btn-group-justified submission" do %>
+	<span class="fa fa-comments-o"></span>&nbsp; <%= t 'sub.new' %>
+<% end %>
+<h5><strong><%= t 'sub.display' %></strong></h5>
+<ul>
+<% @communities.each do |community| %>
+	<li><%= link_to community.name, sub_path(community) %></li>
+<% end %>
+</ul>

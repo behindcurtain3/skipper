@@ -37,12 +37,13 @@ en:
           attributes:
             name:
               taken: "is already in use"
-              invalid: "must contain only letters"
+              invalid: "must contain only letters and numbers"
   brand: "opeddit"
   breadcrumb:
     hot: "Hot"
     new: "New"
     top: "Top"
+  cancel: "Cancel"
   comments:
     like: "Like"
     dislike: "Dislike"
@@ -63,8 +64,13 @@ en:
   post_tag: "submitted <time title='%{title}'>%{time} ago</time> by %{name}"
   post_tag_with_sub: "submitted <time title='%{title}'>%{time} ago</time> by %{name} to %{sub}"
   separator: "-"
-  sub_create: "Create a community"
-  sub_edit: "Edit this community"
+  sub:
+    create: "Create"
+    edit: "Edit this community"
+    display: "Displayed Communities"
+    list: "Your Communities"
+    new: "Create a community"
+    save: "Save"
   sub_subscribe: "Join"
   sub_unsubscribe: "Leave"
   sub_subscriber_count:
@@ -75,7 +81,6 @@ en:
   sub_leaders: "Community Leaders"
   sub_captain: "Founder"
   sub_crew: "Moderator"
-  sub_list: "Your Communities"
   register: "Sign up"
   user_create: "Create an account"
   user_save: "Save"

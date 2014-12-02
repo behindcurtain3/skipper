@@ -1,18 +1,21 @@
 <% provide(:title, t('nav.all')) %>
 <% provide(:breadcrumb, link_to(t('nav.all'), subs_path)) %>
 <% content_for :filter do %>
-	<a class="dropdown-toggle" href="#">
-		<strong><%= t 'breadcrumb.hot' %></strong>
-	</a> <small><%= t :separator %></small>
-	<a class="dropdown-toggle" href="#">
-		<%= t 'breadcrumb.new' %>
-	</a> <small><%= t :separator %></small>
-	<a class="dropdown-toggle" href="#">
-		<%= t 'breadcrumb.top' %>
-	</a>
+  <a class="dropdown-toggle" href="#">
+    <strong><%= t 'breadcrumb.hot' %></strong>
+  </a> <small><%= t :separator %></small>
+  <a class="dropdown-toggle" href="#">
+    <%= t 'breadcrumb.new' %>
+  </a> <small><%= t :separator %></small>
+  <a class="dropdown-toggle" href="#">
+    <%= t 'breadcrumb.top' %>
+  </a>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render 'sidebar', :name => t('nav.all') %>
 <% end %>
 <div class="row clearfix">
   <div class="col-md-12 column">
-  	<%= render 'shared/post_list' %>
+    <%= render 'shared/post_list' %>
   </div>
 </div>

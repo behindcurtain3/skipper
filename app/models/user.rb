@@ -27,15 +27,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :username,
-  	:uniqueness => {
-    	:case_sensitive => false
-  	}
+    uniqueness: { case_sensitive: false	},
+    length: { minimum: 3, maximum: 25 }
 
-  validates_length_of :username, :minimum => 3
-	validates_length_of :username, :maximum => 25
-
-	has_many :creations, foreign_key: "creator_id", class_name: "Sub"
-	has_many :posts
+  has_many :creations, foreign_key: "creator_id", class_name: "Sub"
+  has_many :posts
   has_many :comments
   has_many :active_subscriptions, class_name: "Subscription", foreign_key: "subscriber_id", dependent: :destroy
   has_many :subscriptions, through: :active_subscriptions, source: :sub
@@ -67,13 +63,18 @@ class User < ActiveRecord::Base
   end
 
   # return username instead of id
-	def to_param
-		username
-	end
+  def to_param
+    username
+  end
+
+  def feed
+    sub_ids = "SELECT sub_id FROM subscriptions WHERE  subscriber_id = :user_id"
+    Post.where("sub_id IN (#{sub_ids})", user_id: id)
+  end
 
   protected
 
-  	def email_required?
-  		false
-  	end
+    def email_required?
+      false
+    end
 end

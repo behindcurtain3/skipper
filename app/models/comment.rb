@@ -13,7 +13,7 @@
 #
 
 class Comment < ActiveRecord::Base
-	acts_as_tree
+  acts_as_tree
   acts_as_votable
 
   before_create :randomize_token
@@ -25,15 +25,15 @@ class Comment < ActiveRecord::Base
   validates :content, presence: true
   validates :user_id, presence: true
   validates :post_id, presence: true
-	validates :token, presence: true
+  validates :token, presence: true
 
   private
 
-  	def randomize_token
-			if self.token.nil?
-			  begin
-			    self.token = SecureRandom.urlsafe_base64(5, false)
-			  end while Comment.where(:token => self.token).exists?
-			end
-		end
+    def randomize_token
+      if self.token.nil?
+        begin
+          self.token = SecureRandom.urlsafe_base64(5, false)
+        end while Comment.where(:token => self.token).exists?
+      end
+    end
 end

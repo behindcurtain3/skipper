@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_communities
 
   def find_model
     params.each do |name, value|
@@ -15,6 +16,14 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+    def set_communities
+      if user_signed_in?
+        @communities = current_user.subscriptions
+      else
+        @communities = Sub.all
+      end
+    end
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }

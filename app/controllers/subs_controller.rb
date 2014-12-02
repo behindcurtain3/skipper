@@ -6,7 +6,16 @@ class SubsController < ApplicationController
   # GET /subs
   # GET /subs.json
   def index
-    @subs = Sub.all
+    if user_signed_in?
+      @subs = current_user.subscriptions
+      @posts = current_user.feed
+    else
+      # switch to default subs in the future
+      @subs = Sub.all
+      @posts = Post.all
+    end
+
+    @posts = get_posts(@posts, params[:tag], params[:d], params[:f])
   end
 
   def all

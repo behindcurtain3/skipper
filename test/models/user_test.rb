@@ -36,13 +36,13 @@ class UserTest < ActiveSupport::TestCase
 		assert_not @user.valid?
 	end
 
-	test "username should be long enough" do
+	test "username length should be at least 3 characters" do
 		@user.username = "12"
 		assert_not @user.valid?
 	end
 
-	test "username should not be too long" do
-		@user.username = "12345678901234567890123456"
+	test "username length should be at most 25 characters" do
+		@user.username = "a" * 26
 		assert_not @user.valid?
 	end
 
@@ -55,4 +55,5 @@ class UserTest < ActiveSupport::TestCase
 		@user.email = "notanemail"
 		assert_not @user.valid?
 	end
+
 end

@@ -1,5 +1,6 @@
 <% provide(:title, @sub.title) %>
 <% provide(:breadcrumb, link_to(@sub.name, sub_path(@sub))) %>
+<% provide(:filter, 'Edit') %>
 <% content_for :sidebar do %>
 	<%= render 'shared/sidebar' %>
 <% end %>
