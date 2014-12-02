@@ -22,55 +22,55 @@
 #
 
 class Post < ActiveRecord::Base
-	extend FriendlyId
+  extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
-	resourcify
-	acts_as_votable
-	before_create :randomize_token
+  resourcify
+  acts_as_votable
+  before_create :randomize_token
 
-	validates :title, 
-		presence: true, 
-		length: { minimum: 4, maximum: 300 },
-		format: { with: /\A[\w\W]+\z/i }
-	validates :user_id, presence: true
-	validates :sub_id, presence: true
-	validate :has_url_or_text
-	validates :url, format: { with: URI.regexp(%w(http https)) }, if: Proc.new { |a| a.url.present? }
+  validates :title, 
+    presence: true, 
+    length: { minimum: 4, maximum: 300 },
+    format: { with: /\A[\w\W]+\z/i }
+  validates :user_id, presence: true
+  validates :sub_id, presence: true
+  validate :has_url_or_text
+  validates :url, format: { with: URI.regexp(%w(http https)) }, if: Proc.new { |a| a.url.present? }
 
-	belongs_to :user
-	belongs_to :sub
-	has_many :comments
+  belongs_to :user
+  belongs_to :sub
+  has_many :comments
 
-	scope :popular, -> { order("cached_weighted_score desc") }
-	scope :newest, -> { order("created_at desc") }
-	scope :liked, -> { order("cached_votes_up desc") }
-	scope :last_week, lambda { where("created_at >= :date", :date => 1.week.ago) }
-	scope :last_month, lambda { where("created_at >= :date", :date => 1.month.ago) }
+  scope :popular, -> { order("cached_weighted_score desc") }
+  scope :newest, -> { order("created_at desc") }
+  scope :liked, -> { order("cached_votes_up desc") }
+  scope :last_week, lambda { where("created_at >= :date", :date => 1.week.ago) }
+  scope :last_month, lambda { where("created_at >= :date", :date => 1.month.ago) }
 
-	def get_posts(tag, order, filter)
+  def get_posts(tag, order, filter)
 
-		posts = Post.all
+    posts = Post.all
 
-		unless tag.blank?
-			posts = posts.tagged_with(tag)
-		end
+    unless tag.blank?
+      posts = posts.tagged_with(tag)
+    end
 
-		# apply scopes for ordering
-		posts = posts.popular if order == "popular"
-		posts = posts.newest if order == "newest"
-		posts = posts.liked if order == "liked"
+    # apply scopes for ordering
+    posts = posts.popular if order == "popular"
+    posts = posts.newest if order == "newest"
+    posts = posts.liked if order == "liked"
 
-		# apply scopes for filtering
-		posts = posts.last_week if filter == "week"
-		posts = posts.last_month if filter == "month"
+    # apply scopes for filtering
+    posts = posts.last_week if filter == "week"
+    posts = posts.last_month if filter == "month"
 
-		# only return active posts
-		posts = posts.running
+    # only return active posts
+    posts = posts.running
 
-		return posts
-	end
+    return posts
+  end
 
-	# Try building a slug based on the following fields in
+  # Try building a slug based on the following fields in
   # increasing order of specificity.
   def slug_candidates
     [
@@ -79,25 +79,25 @@ class Post < ActiveRecord::Base
     ]
   end
 
-	def has_url_or_text
-		unless [url?, text?].include?(true)
-			errors.add :base, 'Must have a url or text'
-		end
-	end
+  def has_url_or_text
+    unless [url?, text?].include?(true)
+      errors.add :base, 'Must have a url or text'
+    end
+  end
 
-	private
+  private
 
-		def randomize_token
-			if self.token.nil?
-			  begin
-			    self.token = SecureRandom.urlsafe_base64(5, false)
-			  end while Post.where(:token => self.token).exists?
-			end
-		end
+    def randomize_token
+      if self.token.nil?
+        begin
+          self.token = SecureRandom.urlsafe_base64(5, false)
+        end while Post.where(:token => self.token).exists?
+      end
+    end
 
-		def randomizer
-			randomize_token
-			self.token
-		end
+    def randomizer
+      randomize_token
+      self.token
+    end
 
 end
