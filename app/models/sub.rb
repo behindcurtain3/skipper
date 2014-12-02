@@ -13,24 +13,29 @@
 
 class Sub < ActiveRecord::Base
   resourcify
-  belongs_to :creator, 
+  belongs_to :creator,
     class_name: "User",
     touch: true
 
-  validates :name, 
+  validates :name,
     presence: true,
     uniqueness: { case_sensitive: false },
     format: { with: /\A[a-zA-Z0-9]+\z/i },
     length: { minimum: 3, maximum: 42 }
-  validates :title, 
+  validates :title,
     presence: true,
     length: { maximum: 140 }
-  validates :description, 
+  validates :description,
     length: { maximum: 512 }
 
   has_many :posts
-  has_many :active_subscriptions, class_name: "Subscription", foreign_key: "sub_id", dependent: :destroy
-  has_many :subscribers, through: :active_subscriptions, source: :sub
+  has_many :active_subscriptions,
+    class_name: "Subscription",
+    foreign_key: "sub_id",
+    dependent: :destroy
+  has_many :subscribers,
+    through: :active_subscriptions,
+    source: :sub
 
   def to_param
     name
